@@ -1,0 +1,25 @@
+--- pyflakes-0.2.1/bin/pyflakes.orig	2005-10-07 16:58:28.000000000 +0200
++++ pyflakes-0.2.1/bin/pyflakes	2005-11-18 16:23:52.000000000 +0100
+@@ -10,7 +10,11 @@
+         tree = compiler.parse(codeString)
+     except (SyntaxError, IndentationError):
+         value = sys.exc_info()[1]
+-        (lineno, offset, line) = value[1][1:]
++        try:
++            (lineno, offset, line) = value[1][1:]
++        except IndexError:
++            print >> sys.stderr, 'could not compile %r' % (filename,)
++            return
+         if line.endswith("\n"):
+             line = line[:-1]
+         print >> sys.stderr, 'could not compile %r:%d:' % (filename, lineno)
+@@ -24,7 +28,8 @@
+ 
+ 
+ def checkPath(filename):
+-    return check(file(filename).read(), filename)
++    if os.path.exists(filename):
++        return check(file(filename).read(), filename)
+ 
+ args = sys.argv[1:]
+ if args:
