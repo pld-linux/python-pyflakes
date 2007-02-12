@@ -1,5 +1,5 @@
 Summary:	Passive checker of Python programs
-Summary(pl):	Pasywny program do sprawdzania programów w Pythonie
+Summary(pl.UTF-8):   Pasywny program do sprawdzania programÃ³w w Pythonie
 Name:		pyflakes
 Version:	0.2.1
 Release:	0.1
@@ -24,13 +24,13 @@ faster, although it does not perform as many checks. Unlike PyLint,
 Pyflakes checks only for logical errors in programs; it does not
 perform any checks on style.
 
-%description -l pl
-Pyflakes to prosty program sprawdzaj±cy pliki ¼ród³owe Pythona pod
-k±tem b³êdów. Jest podobny do PyCheckera je¶li chodzi o zakres
-dzia³ania, ale ró¿ni siê tym, ¿e nie wykonuje modu³ów przy sprawdzaniu
-ich. Jest to zarówno bardziej bezpieczne, jak i szybze, choæ nie
-sprawdza tak wielu rzeczy. W przeciwieñstwie do PyLinta Pyflakes
-szuka tylko b³êdów logicznych w programach; nie sprawdza stylu.
+%description -l pl.UTF-8
+Pyflakes to prosty program sprawdzajÄ…cy pliki ÅºrÃ³dÅ‚owe Pythona pod
+kÄ…tem bÅ‚Ä™dÃ³w. Jest podobny do PyCheckera jeÅ›li chodzi o zakres
+dziaÅ‚ania, ale rÃ³Å¼ni siÄ™ tym, Å¼e nie wykonuje moduÅ‚Ã³w przy sprawdzaniu
+ich. Jest to zarÃ³wno bardziej bezpieczne, jak i szybze, choÄ‡ nie
+sprawdza tak wielu rzeczy. W przeciwieÅ„stwie do PyLinta Pyflakes
+szuka tylko bÅ‚Ä™dÃ³w logicznych w programach; nie sprawdza stylu.
 
 %prep
 %setup -q
