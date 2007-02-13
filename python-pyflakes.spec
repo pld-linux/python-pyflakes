@@ -1,5 +1,5 @@
 Summary:	Passive checker of Python programs
-Summary(pl.UTF-8):   Pasywny program do sprawdzania programów w Pythonie
+Summary(pl.UTF-8):	Pasywny program do sprawdzania programów w Pythonie
 Name:		pyflakes
 Version:	0.2.1
 Release:	0.1
