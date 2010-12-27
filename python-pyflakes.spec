@@ -1,13 +1,12 @@
 Summary:	Passive checker of Python programs
 Summary(pl.UTF-8):	Pasywny program do sprawdzania programów w Pythonie
 Name:		pyflakes
-Version:	0.2.1
-Release:	0.1
+Version:	0.4.0
+Release:	1
 License:	MIT
 Group:		Development/Tools
-Source0:	http://www.divmod.org/static/projects/pyflakes/%{name}-%{version}.tar.gz
-# Source0-md5:	e65d9245d706350b3db811280d897f30
-Patch0:		%{name}-IOError.patch
+Source0:	http://pypi.python.org/packages/source/p/pyflakes/%{name}-%{version}.tar.gz
+# Source0-md5:	630a72510aae8758f48cf60e4fa17176
 URL:		http://www.divmod.org/projects/pyflakes
 BuildRequires:	python-devel
 BuildRequires:	rpm-pythonprov
@@ -34,7 +33,6 @@ szuka tylko błędów logicznych w programach; nie sprawdza stylu.
 
 %prep
 %setup -q
-%patch0 -p1
 
 %install
 rm -rf $RPM_BUILD_ROOT
@@ -51,4 +49,5 @@ rm -rf $RPM_BUILD_ROOT
 %files
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_bindir}/*
+%{py_sitescriptdir}/pyflakes-%{version}-py*.egg-info
 %{py_sitescriptdir}/pyflakes
