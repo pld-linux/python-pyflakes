@@ -1,3 +1,7 @@
+#
+# Conditional build:
+%bcond_without	tests	# do not perform "make test"
+
 %define 	module	pyflakes
 Summary:	Passive checker of Python programs
 Summary(pl.UTF-8):	Pasywny program do sprawdzania programów w Pythonie
@@ -9,8 +13,9 @@ Group:		Development/Tools
 Source0:	http://pypi.python.org/packages/source/p/pyflakes/%{module}-%{version}.tar.gz
 # Source0-md5:	630a72510aae8758f48cf60e4fa17176
 URL:		http://www.divmod.org/projects/pyflakes
+BuildRequires:	python-TwistedCore
 BuildRequires:	python-devel
-BuildRequires:	rpm-pythonprov
+%{?with_tests:BuildRequires:	rpm-pythonprov}
 BuildRequires:	rpmbuild(macros) >= 1.219
 %pyrequires_eq	python-modules
 Provides:	pyflakes = %{version}-%{release}
@@ -36,6 +41,13 @@ tylko błędów logicznych w programach; nie sprawdza stylu.
 
 %prep
 %setup -q -n %{module}-%{version}
+
+%build
+%{__python} setup.py build
+
+%if %{with tests}
+trial pyflakes/test
+%endif
 
 %install
 rm -rf $RPM_BUILD_ROOT
