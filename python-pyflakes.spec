@@ -9,7 +9,7 @@ Summary:	Passive checker of Python programs
 Summary(pl.UTF-8):	Pasywny program do sprawdzania programów w Pythonie
 Name:		python-%{module}
 Version:	0.9.2
-Release:	1
+Release:	2
 License:	MIT
 Group:		Development/Tools
 Source0:	http://pypi.python.org/packages/source/p/pyflakes/%{module}-%{version}.tar.gz
