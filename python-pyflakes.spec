@@ -8,21 +8,23 @@
 Summary:	Passive checker of Python programs
 Summary(pl.UTF-8):	Pasywny program do sprawdzania programów w Pythonie
 Name:		python-%{module}
-Version:	1.1.0
-Release:	2
+Version:	1.5.0
+Release:	1
 License:	MIT
 Group:		Development/Tools
 #Source0Download: https://pypi.python.org/simple/pyflakes/
-Source0:	https://pypi.python.org/packages/source/p/pyflakes/%{module}-%{version}.tar.gz
-# Source0-md5:	e0bf854cd5abd4527e149692925b82eb
-URL:		http://www.divmod.org/projects/pyflakes
+Source0:	https://files.pythonhosted.org/packages/source/p/pyflakes/%{module}-%{version}.tar.gz
+# Source0-md5:	84a99f05e5409f8196325dda3f5a1b9a
+URL:		https://github.com/PyCQA/pyflakes
 %if %{with python2}
 BuildRequires:	python-devel >= 1:2.5
 BuildRequires:	python-modules >= 1:2.5
+BuildRequires:	python-setuptools
 %endif
 %if %{with python3}
 BuildRequires:	python3-devel >= 1:3.2
 BuildRequires:	python3-modules >= 1:3.2
+BuildRequires:	python3-setuptools
 %endif
 BuildRequires:	rpm-pythonprov
 BuildRequires:	rpmbuild(macros) >= 1.714
@@ -114,12 +116,13 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_bindir}/pyflakes
 %attr(755,root,root) %{_bindir}/pyflakes-2
 %{py_sitescriptdir}/pyflakes
-%{py_sitescriptdir}/pyflakes-%{version}-*.egg-info
+%{py_sitescriptdir}/pyflakes-%{version}-py*.egg-info
 %endif
 
 %if %{with python3}
 %files -n python3-%{module}
 %defattr(644,root,root,755)
+%doc AUTHORS LICENSE NEWS.txt README.rst
 %attr(755,root,root) %{_bindir}/pyflakes-3
 %{py3_sitescriptdir}/pyflakes
 %{py3_sitescriptdir}/pyflakes-%{version}-py*.egg-info
