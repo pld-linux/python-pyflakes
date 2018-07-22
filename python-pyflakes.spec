@@ -8,13 +8,14 @@
 Summary:	Passive checker of Python programs
 Summary(pl.UTF-8):	Pasywny program do sprawdzania programów w Pythonie
 Name:		python-%{module}
-Version:	1.5.0
-Release:	2
+# NOTE: don't upgrade to 2.0.0 until release of flake8 ready for new pyflakes
+Version:	1.6.0
+Release:	1
 License:	MIT
 Group:		Development/Tools
-#Source0Download: https://pypi.python.org/simple/pyflakes/
+#Source0Download: https://pypi.org/simple/pyflakes/
 Source0:	https://files.pythonhosted.org/packages/source/p/pyflakes/%{module}-%{version}.tar.gz
-# Source0-md5:	84a99f05e5409f8196325dda3f5a1b9a
+# Source0-md5:	b385b0e4cd40a522553e97cd2d83573e
 URL:		https://github.com/PyCQA/pyflakes
 %if %{with python2}
 BuildRequires:	python-devel >= 1:2.5
