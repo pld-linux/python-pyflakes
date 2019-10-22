@@ -8,28 +8,28 @@
 Summary:	Passive checker of Python programs
 Summary(pl.UTF-8):	Pasywny program do sprawdzania programów w Pythonie
 Name:		python-%{module}
-# NOTE: don't upgrade to 2.0.0 until release of flake8 ready for new pyflakes
-Version:	1.6.0
+# NOTE: before upgrading to >=2.2.0 check for flake8 release supporting new pyflakes
+Version:	2.1.1
 Release:	1
 License:	MIT
 Group:		Development/Tools
 #Source0Download: https://pypi.org/simple/pyflakes/
 Source0:	https://files.pythonhosted.org/packages/source/p/pyflakes/%{module}-%{version}.tar.gz
-# Source0-md5:	b385b0e4cd40a522553e97cd2d83573e
+# Source0-md5:	a0f71a15724e553c46e03ba5ed56703c
 URL:		https://github.com/PyCQA/pyflakes
 %if %{with python2}
-BuildRequires:	python-devel >= 1:2.5
-BuildRequires:	python-modules >= 1:2.5
+BuildRequires:	python-devel >= 1:2.7
+BuildRequires:	python-modules >= 1:2.7
 BuildRequires:	python-setuptools
 %endif
 %if %{with python3}
-BuildRequires:	python3-devel >= 1:3.2
-BuildRequires:	python3-modules >= 1:3.2
+BuildRequires:	python3-devel >= 1:3.4
+BuildRequires:	python3-modules >= 1:3.4
 BuildRequires:	python3-setuptools
 %endif
 BuildRequires:	rpm-pythonprov
 BuildRequires:	rpmbuild(macros) >= 1.714
-Requires:	python-modules >= 1:2.5
+Requires:	python-modules >= 1:2.7
 Provides:	pyflakes = %{version}-%{release}
 Obsoletes:	pyflakes < 0.4.0-2
 BuildArch:	noarch
@@ -55,7 +55,7 @@ tylko błędów logicznych w programach; nie sprawdza stylu.
 Summary:	Passive checker of Python programs
 Summary(pl.UTF-8):	Pasywny program do sprawdzania programów w Pythonie
 Group:		Libraries/Python
-Requires:	python3-modules >= 1:3.2
+Requires:	python3-modules >= 1:3.4
 
 %description -n python3-%{module}
 Pyflakes is a simple program which checks Python source files for
@@ -113,7 +113,7 @@ rm -rf $RPM_BUILD_ROOT
 %if %{with python2}
 %files
 %defattr(644,root,root,755)
-%doc AUTHORS LICENSE NEWS.txt README.rst
+%doc AUTHORS LICENSE NEWS.rst README.rst
 %attr(755,root,root) %{_bindir}/pyflakes
 %attr(755,root,root) %{_bindir}/pyflakes-2
 %{py_sitescriptdir}/pyflakes
@@ -123,7 +123,7 @@ rm -rf $RPM_BUILD_ROOT
 %if %{with python3}
 %files -n python3-%{module}
 %defattr(644,root,root,755)
-%doc AUTHORS LICENSE NEWS.txt README.rst
+%doc AUTHORS LICENSE NEWS.rst README.rst
 %attr(755,root,root) %{_bindir}/pyflakes-3
 %{py3_sitescriptdir}/pyflakes
 %{py3_sitescriptdir}/pyflakes-%{version}-py*.egg-info
