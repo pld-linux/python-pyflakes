@@ -10,7 +10,7 @@ Summary(pl.UTF-8):	Pasywny program do sprawdzania programów w Pythonie
 Name:		python-%{module}
 # NOTE: before upgrading to >=2.2.0 check for flake8 release supporting new pyflakes
 Version:	2.1.1
-Release:	1
+Release:	2
 License:	MIT
 Group:		Development/Tools
 #Source0Download: https://pypi.org/simple/pyflakes/
