@@ -10,7 +10,7 @@ Summary(pl.UTF-8):	Pasywny program do sprawdzania programów w Pythonie
 Name:		python-%{module}
 # NOTE: before upgrading to >=2.2.0 check for flake8 release supporting new pyflakes
 Version:	2.1.1
-Release:	3
+Release:	4
 License:	MIT
 Group:		Development/Tools
 #Source0Download: https://pypi.org/simple/pyflakes/
@@ -56,6 +56,8 @@ Summary:	Passive checker of Python programs
 Summary(pl.UTF-8):	Pasywny program do sprawdzania programów w Pythonie
 Group:		Libraries/Python
 Requires:	python3-modules >= 1:3.4
+# default binary moved
+Conflicts:	python-pyflakes < 2.1.1-4
 
 %description -n python3-%{module}
 Pyflakes is a simple program which checks Python source files for
@@ -78,11 +80,15 @@ tylko błędów logicznych w programach; nie sprawdza stylu.
 
 %build
 %if %{with python2}
-%py_build %{?with_tests:test}
+%py_build
+
+%{__python} -m unittest discover -s pyflakes/test
 %endif
 
 %if %{with python3}
-%py3_build %{?with_tests:test}
+%py3_build
+
+%{__python3} -m unittest discover -s pyflakes/test
 %endif
 
 %install
@@ -92,6 +98,7 @@ rm -rf $RPM_BUILD_ROOT
 %py_install
 
 %{__mv} $RPM_BUILD_ROOT%{_bindir}/pyflakes{,-2}
+
 %{__rm} -r $RPM_BUILD_ROOT%{py_sitescriptdir}/pyflakes/test
 %py_postclean
 %endif
@@ -100,11 +107,9 @@ rm -rf $RPM_BUILD_ROOT
 %py3_install
 
 %{__mv} $RPM_BUILD_ROOT%{_bindir}/pyflakes{,-3}
-%{__rm} -r $RPM_BUILD_ROOT%{py3_sitescriptdir}/pyflakes/test
-%endif
+ln -sf pyflakes-3 $RPM_BUILD_ROOT%{_bindir}/pyflakes
 
-%if %{with python2}
-ln -sf pyflakes-2 $RPM_BUILD_ROOT%{_bindir}/pyflakes
+%{__rm} -r $RPM_BUILD_ROOT%{py3_sitescriptdir}/pyflakes/test
 %endif
 
 %clean
@@ -114,7 +119,6 @@ rm -rf $RPM_BUILD_ROOT
 %files
 %defattr(644,root,root,755)
 %doc AUTHORS LICENSE NEWS.rst README.rst
-%attr(755,root,root) %{_bindir}/pyflakes
 %attr(755,root,root) %{_bindir}/pyflakes-2
 %{py_sitescriptdir}/pyflakes
 %{py_sitescriptdir}/pyflakes-%{version}-py*.egg-info
@@ -124,6 +128,7 @@ rm -rf $RPM_BUILD_ROOT
 %files -n python3-%{module}
 %defattr(644,root,root,755)
 %doc AUTHORS LICENSE NEWS.rst README.rst
+%attr(755,root,root) %{_bindir}/pyflakes
 %attr(755,root,root) %{_bindir}/pyflakes-3
 %{py3_sitescriptdir}/pyflakes
 %{py3_sitescriptdir}/pyflakes-%{version}-py*.egg-info
