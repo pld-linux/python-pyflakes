@@ -6,7 +6,9 @@
 Summary:	Passive checker of Python programs
 Summary(pl.UTF-8):	Pasywny program do sprawdzania programów w Pythonie
 Name:		python-%{module}
-# NOTE: before upgrading to >=2.4.0 check for python2-compatible flake8 release supporting new pyflakes
+# keep < 2.5 here for python2 support
+# and < 2.4 to support flake8 3.9.x, which was the last with python2 support
+# (there were no flake8 releases supporting pyflakes 2.4.x and python2)
 Version:	2.3.1
 Release:	6
 License:	MIT
